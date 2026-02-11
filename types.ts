@@ -27,3 +27,22 @@ export interface Certification {
   issuer: string;
   date: string;
 }
+
+export interface Course {
+  code: string;
+  name: string;
+  description: string;
+  reflection: string[];
+  projects: {
+    title: string;
+    description: string;
+    link?: string;
+  }[];
+  artifacts: {
+    bestProject?: boolean;
+    caseStudy?: boolean;
+    research?: boolean;
+    paper?: boolean;
+  };
+  status?: 'COMPLETED' | 'IN PROGRESS';
+}
