@@ -81,10 +81,13 @@ const App: React.FC = () => {
         }`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center space-x-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/10 transition-all duration-300 overflow-hidden">
-              <img src="/logo.png" alt="DXW" className="w-full h-full object-cover" onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement!.innerHTML = '<div class="text-[10px] font-bold text-blue-500">DXW</div>';
+            <div className="w-12 h-12 bg-white/10 border border-white/20 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 overflow-hidden">
+              <img src="/Dev X World.jpg" alt="DXW" className="w-full h-full object-cover" onError={(e) => {
+                const target = e.currentTarget;
+                target.style.display = 'none';
+                if (target.parentElement) {
+                  target.parentElement.innerHTML = '<div class="text-xs font-bold text-blue-500">DXW</div>';
+                }
               }} />
             </div>
             <div>
@@ -455,9 +458,9 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+            <div className="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6">
               <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center">
-                <Cpu className="text-purple-500 w-6 h-6" />
+                <Cpu className="text-purple-500 w-6 h-6 cyber-glow" />
               </div>
               <h5 className="text-lg font-bold font-mono">Cloud & Tools</h5>
               <div className="flex flex-wrap gap-2">
@@ -484,8 +487,8 @@ const App: React.FC = () => {
 
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               {CERTIFICATIONS.map((cert, idx) => (
-                <div key={idx} className="p-6 bg-gradient-to-r from-gray-900/40 to-black border border-white/5 rounded-2xl flex items-start group hover:border-blue-500/20 transition-all duration-300">
-                  <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mr-6 group-hover:rotate-6 transition-transform">
+                <div key={idx} className="glass-panel glass-panel-hover p-6 rounded-2xl flex items-start group">
+                  <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mr-6 group-hover:rotate-6 transition-transform cyber-glow">
                     <Award className="w-6 h-6 text-blue-500" />
                   </div>
                   <div>
@@ -529,22 +532,22 @@ const App: React.FC = () => {
           <h3 className="text-5xl md:text-7xl font-black mb-12 tracking-tighter">Initiate Secure <br />Collaboration.</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-24">
-            <a href="mailto:Devam9131@gmail.com" className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-blue-500/30 transition-all hover:-translate-y-2 group">
-              <Mail className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">E-Mail Channel</div>
-              <div className="text-lg font-bold text-white">Devam9131@gmail.com</div>
+            <a href="mailto:Devam9131@gmail.com" className="glass-panel glass-panel-hover p-8 rounded-3xl group">
+              <Mail className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform text-flicker" />
+              <div className="text-sm font-mono text-gray-400 mb-2 uppercase tracking-widest font-bold">E-Mail Channel</div>
+              <div className="text-xl font-bold text-white">Devam9131@gmail.com</div>
             </a>
 
-            <a href="tel:+15513449705" className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-blue-500/30 transition-all hover:-translate-y-2 group">
-              <Phone className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">Secure Line</div>
-              <div className="text-lg font-bold text-white">+1 (551) 344-9705</div>
+            <a href="tel:+15513449705" className="glass-panel glass-panel-hover p-8 rounded-3xl group">
+              <Phone className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform text-flicker" />
+              <div className="text-sm font-mono text-gray-400 mb-2 uppercase tracking-widest font-bold">Secure Line</div>
+              <div className="text-xl font-bold text-white">+1 (551) 344-9705</div>
             </a>
 
-            <a href="https://linkedin.com/in/devamstark" target="_blank" className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-blue-500/30 transition-all hover:-translate-y-2 group">
-              <Linkedin className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-xs font-mono text-gray-500 mb-2 uppercase tracking-widest">Connect Network</div>
-              <div className="text-lg font-bold text-white">LinkedIn Profile</div>
+            <a href="https://linkedin.com/in/devamstark" target="_blank" className="glass-panel glass-panel-hover p-8 rounded-3xl group">
+              <Linkedin className="w-8 h-8 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform text-flicker" />
+              <div className="text-sm font-mono text-gray-400 mb-2 uppercase tracking-widest font-bold">Connect Network</div>
+              <div className="text-xl font-bold text-white">LinkedIn Profile</div>
             </a>
           </div>
 
