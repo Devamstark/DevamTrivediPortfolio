@@ -3,6 +3,27 @@ import { Project, Experience, Education, Certification, Course } from './types';
 
 export const PROJECTS: Project[] = [
   {
+    title: "IIGD by DevXWorld",
+    description: "Strategic Border Surveillance & AI Intelligence system featuring Multi-Source Satellite Intelligence (MSSI) and Dual-Engine AI for anomaly detection and reconnaissance.",
+    technologies: ["Python", "Streamlit", "PyTorch", "OpenCV", "YOLO"],
+    link: "https://github.com/Devamstark/IIGD",
+    category: "Cybersecurity"
+  },
+  {
+    title: "DevXWorld e-Rx Hub",
+    description: "A legally compliant prescription management platform for doctors, pharmacies, and patients. Features 2FA, RBAC, and AI-powered insights for healthcare infrastructure.",
+    technologies: ["React", "TypeScript", "Supabase", "Gemini AI"],
+    link: "https://github.com/Devamstark/e-rx-it-project",
+    category: "Web"
+  },
+  {
+    title: "E-rxHub Patient Portal",
+    description: "Secure patient-facing dashboard for the e-Rx Hub ecosystem, allowing patients to manage prescriptions and medical history with forensic-level security.",
+    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+    link: "https://github.com/Devamstark/E-rxHub-Patient",
+    category: "Web"
+  },
+  {
     title: "DevXWorld Stock Analyzer",
     description: "Built a real-time stock analysis web application for Indian investors using Python (Flask) and JavaScript, featuring live NSE data, AI-driven recommendations, and a fair value calculator.",
     technologies: ["Python", "Flask", "JavaScript", "NSE API"],
@@ -24,6 +45,7 @@ export const PROJECTS: Project[] = [
     category: "Cybersecurity"
   }
 ];
+
 
 export const EXPERIENCES: Experience[] = [
   {

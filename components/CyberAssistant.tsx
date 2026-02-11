@@ -1,12 +1,15 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-
 import { Shield, Send, Terminal, X, MessageSquare } from 'lucide-react';
+import { PROJECTS, EXPERIENCES, EDUCATION, CERTIFICATIONS, SKILLS } from '../constants';
 
 const CyberAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; text: string }[]>([
-    { role: 'assistant', text: "Secure handshake established. I am DEVX-CORE, Devam's Portfolio Interface. How can I assist you with security audits or recruitment inquiries today?" }
+    {
+      role: 'assistant',
+      text: "Secure handshake established. I am DEVX-CORE. I can provide data on Devam's Projects, Experience, Skills, Education, or Contact info. \n\nTry asking: 'Show me your projects', 'What are your skills?', or 'How can I hire you?'"
+    }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -18,6 +21,41 @@ const CyberAssistant: React.FC = () => {
     }
   }, [messages, isTyping]);
 
+  const getSystemResponse = (userInput: string): string => {
+    const text = userInput.toLowerCase();
+
+    if (text.includes('project') || text.includes('build') || text.includes('portfolio') || text.includes('repo')) {
+      return `REPOS_FOUND: ${PROJECTS.length} active deployments. Featured: ${PROJECTS[0].title}. You can view the source code for all projects on my GitHub (Devamstark).`;
+    }
+
+    if (text.includes('experience') || text.includes('work') || text.includes('job') || text.includes('history')) {
+      const topExp = EXPERIENCES[0];
+      return `HISTORY_LOG: Active. Most recent: ${topExp.role} at ${topExp.company} (${topExp.period}). Specialized in CDR/IPDR analysis and security monitoring.`;
+    }
+
+    if (text.includes('skill') || text.includes('stack') || text.includes('tech') || text.includes('know') || text.includes('proficien')) {
+      return `COMPETENCY_MATRIX: \n• Cyber: ${SKILLS.cybersecurity.slice(0, 3).join(', ')}\n• Languages: ${SKILLS.languages.join(', ')}\n• Tools: ${SKILLS.tools.slice(0, 3).join(', ')}`;
+    }
+
+    if (text.includes('education') || text.includes('college') || text.includes('degree') || text.includes('school') || text.includes('study')) {
+      return `ACADEMIC_RECORDS: Currently pursuing B.S. in Computer Science (Cyber Security) at ${EDUCATION[0].institution}. Graduation: ${EDUCATION[0].expected}.`;
+    }
+
+    if (text.includes('contact') || text.includes('hire') || text.includes('email') || text.includes('phone') || text.includes('call')) {
+      return `COMM_CHANNELS: \n• Email: Devam9131@gmail.com\n• Phone: +1 (551) 344-9705\n• LinkedIn: linkedin.com/in/devamstark`;
+    }
+
+    if (text.includes('cert') || text.includes('award') || text.includes('credential')) {
+      return `CREDENTIALS_FOUND: ${CERTIFICATIONS.length} industry certs. Top: ${CERTIFICATIONS[0].name}, ${CERTIFICATIONS[1].name}. High security clearance protocols followed.`;
+    }
+
+    if (text.includes('hi') || text.includes('hello') || text.includes('help') || text.includes('who')) {
+      return `INTERFACE_READY. Query authorized. I can extract data on: PROJECTS, EXPERIENCE, SKILLS, EDUCATION, and CONTACT. What would you like to view?`;
+    }
+
+    return "QUERY_UNRECOGNIZED. Integrity check failed. Please use authorized keywords: [Projects, Experience, Skills, Education, Contact].";
+  };
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -27,21 +65,13 @@ const CyberAssistant: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulate processing delay for "hacker" feel
+      await new Promise(resolve => setTimeout(resolve, 800));
 
-      const responses = [
-        "Secure handshake established. Message encrypted and logged.",
-        "Input received. Analysis complete. No threats detected.",
-        "Request acknowledged. Operating in secure offline mode.",
-        "Data packet verifying... Integrity check passed.",
-        "System is currently in stealth mode. Please contact via secure channels (Email/LinkedIn)."
-      ];
-
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      setMessages(prev => [...prev, { role: 'assistant', text: randomResponse }]);
+      const response = getSystemResponse(userText);
+      setMessages(prev => [...prev, { role: 'assistant', text: response }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', text: "ERR: SYSTEM_OFFLINE" }]);
+      setMessages(prev => [...prev, { role: 'assistant', text: "ERR: INTERNAL_CORE_FAILURE" }]);
     } finally {
       setIsTyping(false);
     }
@@ -64,9 +94,9 @@ const CyberAssistant: React.FC = () => {
           <div ref={scrollRef} className="h-96 overflow-y-auto p-4 space-y-4 text-[11px] leading-relaxed">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3 rounded-lg ${m.role === 'user'
-                    ? 'bg-blue-600 text-white rounded-tr-none'
-                    : 'bg-gray-900 text-green-400 border border-green-900/30 rounded-tl-none'
+                <div className={`max-w-[85%] p-3 rounded-lg whitespace-pre-wrap ${m.role === 'user'
+                  ? 'bg-blue-600 text-white rounded-tr-none'
+                  : 'bg-gray-900 text-green-400 border border-green-900/30 rounded-tl-none'
                   }`}>
                   {m.text}
                 </div>
@@ -75,7 +105,7 @@ const CyberAssistant: React.FC = () => {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="bg-gray-900 text-green-400 p-3 rounded-lg border border-green-900/30">
-                  <span className="animate-pulse">_analyzing_packet_...</span>
+                  <span className="animate-pulse">_extracting_data_packet_...</span>
                 </div>
               </div>
             )}
@@ -87,7 +117,7 @@ const CyberAssistant: React.FC = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Query DEVX-CORE..."
+              placeholder="Query DEVX-CORE... (e.g. 'Skills')"
               className="flex-grow bg-gray-900 border border-blue-900/30 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             <button
@@ -114,3 +144,4 @@ const CyberAssistant: React.FC = () => {
 };
 
 export default CyberAssistant;
+
