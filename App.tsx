@@ -145,9 +145,9 @@ const App: React.FC = () => {
         <section id="hero" className="mb-48">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-8">
-              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono tracking-widest uppercase mb-4 animate-pulse">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                <span className="font-bold">Security Protocol Active</span>
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono tracking-widest uppercase mb-4 pulse-glow">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,1)]"></span>
+                <span className="font-bold text-glow">Security Protocol Active</span>
               </div>
               <h1 className="text-5xl md:text-8xl font-black leading-none tracking-tighter">
                 Securing the <br />
@@ -206,19 +206,21 @@ const App: React.FC = () => {
                 {EXPERIENCES.map((exp, idx) => (
                   <div key={idx} className="relative pl-8 border-l border-blue-900 group">
                     <div className="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-blue-600 rounded-full shadow-[0_0_10px_rgba(37,99,235,0.8)] group-hover:scale-125 transition-transform"></div>
-                    <div className="mb-2 text-sm font-mono text-blue-400 font-bold uppercase tracking-widest">{exp.period}</div>
-                    <h5 className="text-2xl font-bold text-white mb-1">{exp.role}</h5>
-                    <div className="text-blue-400/90 mb-6 flex items-center font-bold text-base italic">
-                      {exp.company} <span className="mx-2 text-gray-600">|</span> {exp.location}
+                    <div className="glass-panel glass-panel-hover p-6 rounded-2xl">
+                      <div className="mb-2 text-sm font-mono text-blue-400 font-bold uppercase tracking-widest">{exp.period}</div>
+                      <h5 className="text-2xl font-bold text-white mb-1">{exp.role}</h5>
+                      <div className="text-blue-400/90 mb-6 flex items-center font-bold text-base italic">
+                        {exp.company} <span className="mx-2 text-gray-600">|</span> {exp.location}
+                      </div>
+                      <ul className="space-y-4">
+                        {exp.highlights.map((h, i) => (
+                          <li key={i} className="text-base text-gray-300 flex items-start leading-relaxed">
+                            <span className="text-blue-500 mr-3 mt-1.5">•</span>
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <ul className="space-y-4">
-                      {exp.highlights.map((h, i) => (
-                        <li key={i} className="text-base text-gray-300 flex items-start leading-relaxed">
-                          <span className="text-blue-500 mr-3 mt-1.5">•</span>
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 ))}
               </div>
@@ -230,7 +232,7 @@ const App: React.FC = () => {
               </h4>
               <div className="space-y-8">
                 {EDUCATION.map((edu, idx) => (
-                  <div key={idx} className="group bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-blue-500/40 transition-all duration-300">
+                  <div key={idx} className="glass-panel glass-panel-hover p-8 rounded-2xl">
                     <div className="text-sm font-mono text-blue-400 mb-3 font-bold uppercase tracking-widest">{edu.expected}</div>
                     <h5 className="text-xl font-bold text-white mb-2">{edu.degree}</h5>
                     <p className="text-gray-300 font-semibold mb-4">{edu.institution}</p>
@@ -272,7 +274,7 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PROJECTS.map((project, idx) => (
-              <div key={idx} className="group relative bg-gradient-to-b from-gray-900/50 to-black border border-white/10 p-8 rounded-3xl flex flex-col h-full hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2">
+              <div key={idx} className="glass-panel glass-panel-hover p-8 rounded-3xl flex flex-col h-full group">
                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                   <Cpu className="w-24 h-24" />
                 </div>
@@ -314,7 +316,7 @@ const App: React.FC = () => {
 
           <div className="space-y-24">
             {COURSES.filter(c => c.reflection.length > 0).map((course, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl hover:border-blue-500/20 transition-all duration-500">
+              <div key={idx} className="glass-panel glass-panel-hover p-8 md:p-12 rounded-3xl">
                 <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-6">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
@@ -423,9 +425,9 @@ const App: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+            <div className="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6">
               <div className="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center">
-                <Shield className="text-red-500 w-6 h-6" />
+                <Shield className="text-red-500 w-6 h-6 cyber-glow" />
               </div>
               <h5 className="text-lg font-bold font-mono">Cybersecurity</h5>
               <div className="flex flex-wrap gap-2">
@@ -433,9 +435,9 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+            <div className="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6">
               <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
-                <Network className="text-blue-500 w-6 h-6" />
+                <Network className="text-blue-500 w-6 h-6 cyber-glow" />
               </div>
               <h5 className="text-lg font-bold font-mono">Networking</h5>
               <div className="flex flex-wrap gap-2">
@@ -443,9 +445,9 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+            <div className="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6">
               <div className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center">
-                <TerminalIcon className="text-green-500 w-6 h-6" />
+                <TerminalIcon className="text-green-500 w-6 h-6 cyber-glow" />
               </div>
               <h5 className="text-lg font-bold font-mono">Programming</h5>
               <div className="flex flex-wrap gap-2">
@@ -508,8 +510,8 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {VOLUNTEER.map((item, idx) => (
-              <div key={idx} className="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-blue-500/20 transition-all duration-500">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div key={idx} className="glass-panel glass-panel-hover p-8 rounded-3xl">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 cyber-glow">
                   <Heart className="text-blue-500 w-6 h-6" />
                 </div>
                 <div className="text-sm font-mono text-blue-400 mb-3 uppercase tracking-widest">{item.period}</div>
