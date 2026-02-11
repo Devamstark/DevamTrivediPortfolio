@@ -321,6 +321,46 @@ const App: React.FC = () => {
             <h3 className="text-4xl md:text-5xl font-bold">School Work & Academic Projects</h3>
           </div>
 
+          {/* Section: List of Core or Required Courses for CIS Majors */}
+          <div className="mb-24">
+            <div className="mb-12">
+              <h4 className="text-2xl font-bold flex items-center">
+                <Award className="mr-3 w-6 h-6 text-blue-500" /> Section: Core CIS Courses
+              </h4>
+              <p className="text-gray-300 text-base mt-2">Required courses for CIS Majors with highlighted key academic artifacts.</p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
+              <table className="w-full text-left font-mono text-xs">
+                <thead>
+                  <tr className="border-b border-white/10 bg-white/5">
+                    <th className="p-4 text-blue-500 uppercase tracking-widest">Course Code / Name</th>
+                    <th className="p-4 text-center">Best Project</th>
+                    <th className="p-4 text-center">Case Study</th>
+                    <th className="p-4 text-center">Research</th>
+                    <th className="p-4 text-center">Paper</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COURSES.map((course, idx) => (
+                    <tr key={idx} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
+                      <td className="p-4">
+                        <div className="flex flex-col">
+                          <span className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">{course.code}</span>
+                          <span className="text-xs text-gray-400 font-medium">{course.name}</span>
+                        </div>
+                      </td>
+                      <td className="p-4 text-center">{course.artifacts?.bestProject ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
+                      <td className="p-4 text-center">{course.artifacts?.caseStudy ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
+                      <td className="p-4 text-center">{course.artifacts?.research ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
+                      <td className="p-4 text-center">{course.artifacts?.paper ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <div className="space-y-24">
             {COURSES.filter(c => c.reflection.length > 0).map((course, idx) => (
               <div key={idx} className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl hover:bg-white/10 transition-all duration-300">
@@ -383,45 +423,6 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          {/* Section A: List of Core or Required Courses for CIS Majors */}
-          <div className="mt-32">
-            <div className="mb-12">
-              <h4 className="text-2xl font-bold flex items-center">
-                <Award className="mr-3 w-6 h-6 text-blue-500" /> Section A: Core CIS Courses
-              </h4>
-              <p className="text-gray-300 text-base mt-2">Required courses for CIS Majors with highlighted key academic artifacts.</p>
-            </div>
-
-            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/5">
-              <table className="w-full text-left font-mono text-xs">
-                <thead>
-                  <tr className="border-b border-white/10 bg-white/5">
-                    <th className="p-4 text-blue-500 uppercase tracking-widest">Course Code / Name</th>
-                    <th className="p-4 text-center">Best Project</th>
-                    <th className="p-4 text-center">Case Study</th>
-                    <th className="p-4 text-center">Research</th>
-                    <th className="p-4 text-center">Paper</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COURSES.map((course, idx) => (
-                    <tr key={idx} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
-                      <td className="p-4">
-                        <div className="flex flex-col">
-                          <span className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">{course.code}</span>
-                          <span className="text-xs text-gray-400 font-medium">{course.name}</span>
-                        </div>
-                      </td>
-                      <td className="p-4 text-center">{course.artifacts?.bestProject ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
-                      <td className="p-4 text-center">{course.artifacts?.caseStudy ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
-                      <td className="p-4 text-center">{course.artifacts?.research ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
-                      <td className="p-4 text-center">{course.artifacts?.paper ? <span className="text-blue-500 font-bold text-lg">X</span> : '-'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
         </section>
 
         {/* Skills Proficiency */}
