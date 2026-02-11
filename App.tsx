@@ -53,6 +53,10 @@ const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const NavItem = ({ id, label }: { id: string, label: string }) => (
     <a
       href={`#${id}`}
@@ -81,7 +85,7 @@ const App: React.FC = () => {
         }`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center space-x-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/10 group-hover:border-blue-500/50 transition-all duration-300 overflow-hidden shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+            <div className={`${scrolled ? 'w-12 h-12' : 'w-20 h-20'} bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white/10 group-hover:border-blue-500/50 transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(59,130,246,0.1)]`}>
               <img src="/devx.jpg" alt="DXW" className="w-full h-full object-cover" onError={(e) => {
                 const target = e.currentTarget;
                 target.style.display = 'none';
@@ -142,13 +146,10 @@ const App: React.FC = () => {
       )}
 
       {/* Main Content */}
-      <main
-        className="max-w-7xl mx-auto px-6 pt-80 md:pt-[28rem] pb-24"
-        style={{ paddingTop: scrolled ? undefined : '26rem' }}
-      >
+      <main className="max-w-7xl mx-auto px-6 pt-24 md:pt-36 pb-24">
 
         {/* Hero Section */}
-        <section id="hero" className="mb-48 mt-8">
+        <section id="hero" className="mb-48">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-8">
               <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono tracking-widest uppercase mb-4 pulse-glow">
