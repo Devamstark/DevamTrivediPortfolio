@@ -4,11 +4,17 @@
 
 @layer components {
   .glass-panel {
-    @apply bg-white/[0.12] backdrop-blur-md border border-white/20 shadow-[0_4px_30px_-5px_rgba(0, 0, 0, 0.6)];
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px -5px rgba(0, 0, 0, 0.6);
   }
 
-  .glass-panel-hover {
-    @apply hover:bg-white/[0.16] hover:border-blue-500/70 hover:shadow-[0_0_30px_rgba(59, 130, 246, 0.2)] transition-all duration-500 hover:-translate-y-1.5;
+  .glass-panel-hover:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    border-color: rgba(59, 130, 246, 0.7);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    transform: translateY(-6px);
   }
 
   .cyber-glow {
